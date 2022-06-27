@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -Rla *.gif | sort -f -k 5 | cut -d' ' -f9 | cut -d'.' -f1
+ls -Rla *.gif | sort -f | sort -k 5 | cut -d' ' -f9 | cut -d'.' -f1
