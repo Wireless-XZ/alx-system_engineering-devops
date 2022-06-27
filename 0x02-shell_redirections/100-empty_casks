@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -aR | find -type d,f -empty | tr -d './'
+find -empty | rev | cut -d'/' -f1 | rev
