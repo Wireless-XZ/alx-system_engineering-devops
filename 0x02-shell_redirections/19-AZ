@@ -1,2 +1,2 @@
 #!/bin/bash
-sed -i "s/A/Z/" | sed -i "s/c/e/" | cat stdin
+sed 's/A/Z/' | sed 's/c/e/'
