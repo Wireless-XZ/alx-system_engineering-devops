@@ -1,0 +1,2 @@
+#!/bin/bash
+ls -Rla *.gif | LC_ALL=C sort -f | cut -d' ' -f9 | cut -d'.' -f1
