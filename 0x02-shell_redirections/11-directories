@@ -1,2 +1,2 @@
 #!/bin/bash
-tree -dRa
+ls -Rda | wc -l
