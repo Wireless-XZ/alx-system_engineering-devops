@@ -7,7 +7,7 @@
 # Deletes the file /var/run/myscript.pid and terminates itself when receiving a SIGQUIT or SIGTERM signal
 
 echo $$ > /var/run/myscript.pid
-trap "echo I hate the kill command; sudo rm -f /var/run/holbertonscript.pid; exit" SIGTERM SIGQUIT
+trap "echo I hate the kill command; sudo rm -f /var/run/myscript.pid; exit" SIGTERM SIGQUIT
 trap "echo Y U no love me?!" SIGINT
 trap "echo I hate the kill command" SIGINT
 while true
