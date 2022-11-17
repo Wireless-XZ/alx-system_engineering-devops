@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# a Bash script that displays all active IPv4 IPs on the machine it’s executed on
+ifconfig | grep inet | awk '{print $2}'
+LIST="$(ifconfig | grep inet)"
+for i in "$LIST"
+do
+    for j in "$i"
+    do
+        echo "j=$j"
+        if [ $j -n ]
+        then
+	    shift 2
+	    echo $j
+        fi
+    done
+done
