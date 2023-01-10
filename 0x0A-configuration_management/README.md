@@ -122,14 +122,14 @@ I love Puppetroot@6712bef7a528:~#
 
 ### 1\. Install a package
 
-mandatory
+> Mandatory
 
-Using Puppet, install `puppet-lint`.
+Using Puppet, install `flask` from `pip3`.
 
 Requirements:
 
--   Install `puppet-lint`
--   Version must be `2.5.0`
+-   Install `flask`
+-   Version must be `2.1.0`
 
 Example:
 
@@ -137,12 +137,10 @@ Example:
 root@d391259bf577:/# puppet apply 1-install_a_package.pp
 Notice: Compiled catalog for d391259bf577 in environment production in 0.14 seconds
 Notice: Applied catalog in 0.20 seconds
-root@d391259bf577:/# gem list
-
-*** LOCAL GEMS ***
-
-puppet-lint (2.5.0)
-root@d391259bf577:/#
+root@d391259bf577:/# flask --version
+Python 3.8.10
+Flask 2.1.0
+Werkzeug 2.1.1
 
 ```
 
