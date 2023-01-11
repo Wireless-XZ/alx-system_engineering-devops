@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+# A bash script that configures a local SSH client to connect without passphrase
