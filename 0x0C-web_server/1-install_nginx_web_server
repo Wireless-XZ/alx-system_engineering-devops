@@ -5,5 +5,5 @@
 # using curl, it must return a page that contains the string Hello World!
 apt-get update
 apt-get install -y nginx
-echo "Hello World!" > /var/www/html/index.nginx-debian.html
-service nginx restart
+echo "Hello World!" > /var/www/html/index.html
+sudo service nginx restart
