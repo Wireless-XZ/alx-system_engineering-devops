@@ -5,6 +5,6 @@
 # using curl, it must return a page that contains the string Hello World!
 apt-get update
 apt-get install -y nginx
-sudo chown -R ubuntu:ubuntu /var/www/html/
-echo -n "Hello World!" > /var/www/html/index.html 
+sudo chown -R $USER:$USER /var/www/html/
+echo -n "Hello World!" > /var/www/html/index.nginx-debian.html
 sudo service nginx restart
