@@ -11,8 +11,7 @@ sudo ufw allow 'Nginx HTTP'
 echo "$STRING" > /var/www/html/index.nginx-debian.html
 sudo sed -i "s|server_name _;|$REDIRECT|" $FILE
 
-VAL=add_header X-Served-By $HOSTNAME;
 CONF="/etc/nginx/nginx.conf"
-HEADER="html {\n\t\t$VAL"
-sudo sed -i "s|html {|$HEADER|" $CONF
+HEADER="http {\n\t\t=add_header X-Served-By $HOSTNAME;"
+sudo sed -i "s|http {|$HEADER|" $CONF
 sudo service nginx restart
