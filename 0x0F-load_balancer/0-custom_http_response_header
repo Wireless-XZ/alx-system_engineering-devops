@@ -12,6 +12,6 @@ echo "$STRING" > /var/www/html/index.nginx-debian.html
 sudo sed -i "s|server_name _;|$REDIRECT|" $FILE
 
 CONF="/etc/nginx/nginx.conf"
-HEADER='http {\n\t\t=add_header X-Served-By $HOSTNAME;'
+HEADER='http {\n\tadd_header X-Served-By $HOSTNAME;'
 sudo sed -i "s|http {|$HEADER|" $CONF
 sudo service nginx restart
