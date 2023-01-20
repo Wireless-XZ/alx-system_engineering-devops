@@ -1,34 +1,10 @@
 #!/usr/bin/env bash
-#
-# Configure Nginx so that its HTTP response contains
-# a custom header
-#
+sudo apt update
+sudo apt -y upgrade
+sudo apt -y install haproxy
+server1="server 80605-web-01 3.94.181.17:8080 check"
+server2="server 80605-web-02 54.157.165.12:8080 check"
+frontend = "\nfrontend haproxynode\n\tbind *:80\n\tmode http\n\tdefault_backend backendnodes\n"
+backend = "\nbackend backendnodes\n\tbalance roundrobin\n\t$server1\n$server2
 
-sudo apt-get -y update
-sudo apt-get install --no-install-recommends software-properties-common
-sudo add-apt-repository ppa:vbernat/haproxy-2.7
-
-sudo apt-get install haproxy=2.7.\*
-
-hgproxy_conf_file="/etc/haproxy/haproxy.cfg"
-
-sudo cp $hgproxy_conf_file $hgproxy_conf_file.copy
-
-# Configure Load Balancer
-fname="frontend http"
-fbind="bind *:80"
-fmode="mode http"
-fdefault="default_backend web-backend"
-frontend="$fname\n\t$fbind\n\t$fmode\n\t$fdefault\n"
-
-bname="backend web-backend"
-bbalance="balance roundrobin"
-bserver1="server 81244-web-01 35.153.52.152:80 check"
-bserver2="server 81244-web-02 54.160.77.140:80 check"
-backend="$bname\n\t$bbalance\n\t$bserver1\n\t$bserver2"
-
-sudo sed -i "$ a $frontend" $hgproxy_conf_file
-sudo sed -i "$ a $backend" $hgproxy_conf_file
-
-# Restart HAProxy
-sudo service haproxy restart
+sudo echo "$frontend$backend" >> /etc/haproxy/haprogy.cfg
