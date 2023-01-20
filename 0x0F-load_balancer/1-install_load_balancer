@@ -4,10 +4,10 @@ sudo apt -y upgrade
 sudo apt -y install haproxy
 server1="server 80605-web-01 3.94.181.17:8080 check"
 server2="server 80605-web-02 54.157.165.12:8080 check"
-frontend = "\nfrontend haproxynode\n\tbind *:80\n\tmode http\n\tdefault_backend backendnodes\n"
-backend = "\nbackend backendnodes\n\tbalance roundrobin\n\t$server1\n\t$server2
+frontend="frontend haproxynode\n\tbind *:80\n\tmode http\n\tdefault_backend backendnodes\n"
+backend="backend backendnodes\n\tbalance roundrobin\n\t$server1\n\t$server2
 
-sudo echo "$frontend" >> "/etc/haproxy/haprogy.cfg"
-sudo echo "$backend" >> "/etc/haproxy/haprogy.cfg"
+sudo sed -i "$ a $frontend" /etc/haproxy/haproxy.cfg
+sudo sed -i "$ a $backend" /etc/haproxy/haproxy.cfg
 
 sudo service haproxy restart
