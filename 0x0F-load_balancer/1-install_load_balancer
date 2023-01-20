@@ -5,7 +5,10 @@
 #
 sudo apt update
 sudo apt -y upgrade
+
 sudo apt -y install haproxy
+sudo sed -i "\$aENABLED=1\n" /etc/default/haproxy
+
 server1="server 80605-web-01 3.94.181.17:8080 check"
 server2="server 80605-web-02 54.157.165.12:8080 check"
 frontend="frontend haproxynode\n\tbind *:80\n\tmode http\n\tdefault_backend backendnodes\n"
