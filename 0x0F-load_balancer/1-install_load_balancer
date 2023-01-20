@@ -8,3 +8,4 @@ frontend = "\nfrontend haproxynode\n\tbind *:80\n\tmode http\n\tdefault_backend 
 backend = "\nbackend backendnodes\n\tbalance roundrobin\n\t$server1\n$server2
 
 sudo echo "$frontend$backend" >> /etc/haproxy/haprogy.cfg
+sudo service haproxy restart
