@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# script to automate Nginx to run, and listen on port 80 of server
+sudo rm /etc/nginx/sites-enabled/default
+sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx start
