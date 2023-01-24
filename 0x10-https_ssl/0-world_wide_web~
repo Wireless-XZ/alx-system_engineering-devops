@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Bash script that will display information about subdomains.
+
+
+function dig_subdomain() {
+    subdomain=$1
+    domain=$2
+    dig_output=$(dig $subdomain.$domain | grep -A1 'ANSWER SECTION:')
+    record_type=$(echo $dig_output | awk '{print $5}')
+    destination=$(echo $dig_output | awk '{print $7}')
+    echo "The subdomain $subdomain is a $record_type record and points to $destination"
+}
+
+domain=$1
+subdomain=$2
+
+if [ -z "$subdomain" ]; then
+    dig_subdomain "www" $domain
+    dig_subdomain "lb-01" $domain
+    dig_subdomain "web-01" $domain
+    dig_subdomain "web-02" $domain
+else
+    dig_subdomain $subdomain $domain
+fi
