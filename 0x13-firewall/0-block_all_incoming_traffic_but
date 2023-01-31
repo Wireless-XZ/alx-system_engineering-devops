@@ -1,0 +1,12 @@
+#!/bin/bash
+# A bash script that blocks all incoming traffic except 22, 443 and 80
+
+sudo apt update
+sudo apt -y upgrade
+sudo apt -y install ufw
+sudo ufw default allow outgoing
+sudo ufw default deny incoming
+sudo ufw allow 22/tcp
+sudo ufw allow 443/tcp
+sudo ufw allow 80/tcp
+sudo ufw enable
