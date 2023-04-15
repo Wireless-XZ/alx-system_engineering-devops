@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Set variables
+PASSWORD=$1
+DATE=`date '+%d-%m-%Y'`
+MYSQL_DUMP_FILE="backup.sql"
+COMPRESSED_FILE="$DATE.tar.gz"
+
+# Generate MySQL dump
+mysqldump -u root -p$PASSWORD --all-databases > $MYSQL_DUMP_FILE
+
+# Compress MySQL dump
+tar -czvf $COMPRESSED_FILE $MYSQL_DUMP_FILE
