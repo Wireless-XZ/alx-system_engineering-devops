@@ -53,11 +53,16 @@ server {
 		 return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
 	}
 
-
 	location / {
-		# First attempt to serve request as file, then
-		# as directory, then fall back to displaying a 404.
-		try_files $uri $uri/ =404;
+		proxy_pass http://127.0.0.1:5003/;
+	}
+
+	# serve static assets found in from AirBnB_clone_v4
+	location /static {
+		 include proxy_params;
+		 proxy_pass http://127.0.0.1:5003;
+		 autoindex off;
+		 alias /home/ubuntu/AirBnB_clone_v4/web_dynamic/static;
 	}
 
 	# Serve /airbnb-onepage/ route from AirBnB_clone_v2
@@ -66,8 +71,12 @@ server {
 	}
 
 	# Serve /number_odd_or_even/ route from AirBnB_clone_v2
-	location ~ ^/airbnb-dynamic/number_odd_or_even/(\d+)$ {
-		 proxy_pass http://127.0.0.1:5001/number_odd_or_even/$1;
+    	location ~ ^/airbnb-dynamic/number_odd_or_even/(\d+)$ {
+       		 proxy_pass http://127.0.0.1:5001/number_odd_or_even/$1;
+	}
+
+	location /api/ {
+		 proxy_pass http://127.0.0.1:5002/api/;
 	}
 
 	# pass PHP scripts to FastCGI server
