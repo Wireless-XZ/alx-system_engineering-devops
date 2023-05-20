@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Script to gracefully reload Gunicorn configurations and restart workers
-sudo kill -HUP "$(pgrep gunicorn | head -n 1)"
-sudo systemctl restart gunicorn
+
+nohup kill -HUP $(ps auxf | grep gunicorn | grep -v grep | awk '{print $2}')
