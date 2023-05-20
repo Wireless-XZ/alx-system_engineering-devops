@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #  a simple Bash script to reload Gunicorn in a graceful way.
 
-worker_pids=$(ps aux | grep '[g]unicorn' | awk '{print $2}')
+worker_pids=$(pgrep -f '[g]unicorn')
 
 for pid in $worker_pids; do
     kill -HUP "$pid"
