@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Script to gracefully reload Gunicorn configurations and restart workers
 
-nohup kill -HUP $(ps auxf | grep gunicorn | grep -v grep | awk '{print $2}')
+kill -HUP "$(pgrep -f 'gunicorn' | sort -n | head -n 1)"
