@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-#  a simple Bash script to reload Gunicorn in a graceful way.
-
-worker_pids=$(pgrep -f '[g]unicorn')
-
-for pid in $worker_pids; do
-    kill -HUP "$pid"
-done
+# Script to gracefully reload Gunicorn configurations and restart workers
+sudo kill -HUP "$(pgrep gunicorn | head -n 1)"
+sudo systemctl restart gunicorn
